@@ -15,51 +15,44 @@
             include("connect.php");
 
             // Buatlah query untuk mengambil data dari database (gunakan query SELECT) 
-            $query = "SELECT * from showroom_mobil"
-
-            // 1. a. Apabila ada data dalam database, maka outputnya adalah semua data dalam database akan ditampilkan 
-            //       (gunakan num_rows > 0, while, dan mysqli_fetch_assoc())
-        if ($rows = $result > 0){
-        }    
-            while ($rows = $result -> fetct_assoc);
-            echo
-            $rows =["id"];
-            $rows =["nama_mobil"];
-            $rows =["brand_mobil"];
-            $rows =["warna_mobil"];
-            $rows =["tipe_mobil"];
-            $rows =["harga_mobil"];
-
-
-           
-
-            //    b. Untuk setiap data yang ditampilkan, buatlah sebuah button atau link yang akan mengarahkan web ke halaman 
-            //       form_detail_mobil.php dimana halaman tersebut akan menunjukkan seluruh data dari satu mobil berdasarkan id
-            // 2. Apabila tidak ada data dalam database, maka outputnya adalah pesan 'tidak ada data dalam tabel'
-            while($select = mysqli_fetch_assoc($query))
-
-            //<!--  **********************  1  **************************     -->
-
+            $query = "SELECT * from showroom_mobil";
+            $eksekusi = mysqli_query($connect,$query);
             
-            
-
-
-
-
-
-
-
-            //<!--  **********************  1  **************************     -->
-
-            //<!--  **********************  2  **************************     -->
-
-            
-            
-
-            
-            
-            //<!--  **********************  2  **************************     -->
             ?>
+                <table class="table">
+                    <thead>
+                        <tr class="table-success">
+                            <th scope="col">id</th>
+                            <th scope="col">NAMA MOBIL</th>
+                            <th scope="col">BRAND MOBIL</th>
+                            <th scope="col">WARNA MOBIL</th> 
+                            <th scope="col">TIPE MOBIL</th>
+                            <th scope="col">HARGA MOBIL</th>
+                            <th scope="col">ACTION</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                    <?php foreach($eksekusi as $data): ?>
+                        <tr class="table-danger">
+                            <td><?= $data["id"]; ?></td>
+                            <td><?= $data["nama_mobil"]; ?></td>
+                            <td><?= $data["brand_mobil"]; ?></td>
+                            <td><?= $data["warna_mobil"]; ?></td>
+                            <td><?= $data["tipe_mobil"]; ?></td>
+                            <td><?= $data["harga_mobil"]; ?></td>
+                            <td><a class="btn btn-info" href="form_detail_mobil.php?id=<?= $data["id"]; ?>">Action</a></td>
+                        </tr>
+
+                    <?php endforeach; ?>
+                    </tr>
+
+                    
+                </tbody>
+                </table>
+            
+            
         </div>
     </center>
 </body>

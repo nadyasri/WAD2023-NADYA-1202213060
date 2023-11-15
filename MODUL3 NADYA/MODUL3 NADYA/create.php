@@ -3,48 +3,51 @@
 <?php
 // (1) Jangan lupa sertakan koneksi database dari yang sudah kalian buat yaa
 
-    include(connect.php)
+    require "connect.php";
 
 // 
 
 // (2) Buatlah perkondisian untuk memeriksa apakah permintaan saat ini menggunakan metode POST
-if ($_SERVER ["REQUEST_METHOD"]) == "_POST");{
+    if (isset($_POST["create"])) {
+  
 
-}
-    
-// 
-
-// (3) Jika sudah coba deh kalian ambil data dari form (CLUE : pakai POST)
-
-    // a. Ambil data nama mobil
-    $nama_mobil =$_POST["nama_mobil"];
-
-    // b. Ambil data brand mobil
-    $brand_mobil = $_POST["brand_mobil"];
-
-    // c. Ambil data warna mobil
-    $warna_mobil = $_POST["warna_mobil"];
-
-    // d. Ambil data tipe mobil
-    $tipe_mobil =$_POST["tipe_mobil"];
-
-
-    // e. Ambil data harga mobil
-    $harga_mobil =$["harga_mobil"];
-
-    // (4) Kalau sudah, kita lanjut Query / Menambahkan data pada SQL (Disini ada perintah untuk SQL), Masukkan ke tabel showroom_mobil (include setiap nama column)
-    $query = mysqli_query($connect, "INSERT INTO showroom_mobil (nama_mobil,brand_mobil,warna_mobil,tipe_mobil,harga_mobil) VALUES ("$nama_mobil","$brand_mobil", "$warna_mobil","$tipe_mobil","$harga_mobil");
+        // 
+        
+        // (3) Jika sudah coba deh kalian ambil data dari form (CLUE : pakai POST)
+        
+        // a. Ambil data nama mobil
+        $nama_mobil =$_POST["nama_mobil"];
+        
+        // b. Ambil data brand mobil
+        $brand_mobil = $_POST["brand_mobil"];
+        
+        // c. Ambil data warna mobil
+        $warna_mobil = $_POST["warna_mobil"];
+        
+        // d. Ambil data tipe mobil
+        $tipe_mobil =$_POST["tipe_mobil"];
+        
+        
+        // e. Ambil data harga mobil
+        $harga_mobil =$_POST["harga_mobil"];
+        
+        // (4) Kalau sudah, kita lanjut Query / Menambahkan data pada SQL (Disini ada perintah untuk SQL), Masukkan ke tabel showroom_mobil (include setiap nama column)
+        mysqli_query($connect, "INSERT INTO showroom_mobil(nama_mobil,brand_mobil,warna_mobil,tipe_mobil,harga_mobil) VALUES('$nama_mobil','$brand_mobil','$warna_mobil','$tipe_mobil','$harga_mobil')");
+    };
 
 
     // (5) Buatkan kondisi jika eksekusi query berhasil
 
-    if ($query){
-        echo "<script>alert("Data berhasil ditambahkan")</script>";
+    if (mysqli_affected_rows($connect)){
+        echo "<script>alert('Data berhasil ditambahkan')
+        location.href='home.php'</script>";
 
     // (6) Jika terdapat kesalahan, buatkan eksekusi query gagalnya 
     } else {
-        echo "<script>alert("Error")</script>";
+        echo "<script>alert('Error')
+        location.href='form_create_mobil.php'</script>";
 
+    }
 // (7) Tutup koneksi ke database setelah selesai menggunakan database
-   $connect -> close ();
+//    $connect -> close ;
 ?>
