@@ -20,7 +20,7 @@
                 $rows[]=$row;
             };
    
-            var_dump($rows);
+       
             //
         ?>
 
