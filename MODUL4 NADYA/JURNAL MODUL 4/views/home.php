@@ -19,10 +19,10 @@ if(mysqli_num_rows($ressult) == 1){
 
     // a. Buatlah query untuk melakukan insert data ke dalam database
         $query1 ="INSERT INTO users (email,name,username,password) VALUES ('$email','$name','$username','$password')";
-        $insert = mysqli_query($connect,$query);
+        $ressult = mysqli_query($connect,$query);
 }
     // a. Simpan hasil query menjadi array asosiatif menggunakan fungsi mysqli_fetch_assoc dalam variabel $data
-        $data = mysqli_fetch_assoc ($result);
+        $data = mysqli_fetch_assoc ($ressult);
     // 
 
 // 
